@@ -14,6 +14,11 @@ class Simulator:
         self.add_new_neighbours((x,y))
     
     def simulate_step(self):
+        if len(self.occupied) > 15:
+            print(self.lose_ducks())
+
+
+        #Choose new targets
         for _ in range(int(self.ducks.intelligence / 5)):
             target = self.ducks.choose_square(self.grid, self.neighbours, self.occupied)
             if self.grid_get(target).attack(self.ducks):
@@ -50,6 +55,26 @@ class Simulator:
             i += 1
         return neighbours
 
+
+    def lose_ducks(self):
+        spread =  self.ducks.number / len(self.occupied)
+        print(spread)
+        if spread < 50:
+            neighbour_freq = dict()
+            #frequency of all neighbours
+            for neighbour in self.neighbours:
+                for adjacent in self.get_all_neighbours(neighbour):
+                    neighbour_freq[adjacent] = neighbour_freq.get(adjacent, 0) + 1
+            
+            maxi = max(neighbour_freq, key=neighbour_freq.get)
+            while maxi not in self.occupied:
+                neighbour_freq.pop(maxi)
+                maxi = max(neighbour_freq, key=neighbour_freq.get)
+            
+            self.occupied.pop(maxi)
+            self.neighbours.add(maxi)
+            return True
+        return False
 
     def grid_get(self, points):
         return self.grid[points[0]][points[1]]

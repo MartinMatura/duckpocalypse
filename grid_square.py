@@ -23,4 +23,15 @@ class GridSquare:
                 duck_stats.intelligence += 5
             elif self.POI == "shop":
                 duck_stats.food_supply += 5
-        self.captured = True    
+        self.captured = True   
+
+    def deoccupy(self, duck_stats):
+        if self.POI:
+            if self.POI == "gym":
+                duck_stats.strength -= 5
+            elif self.POI == "pub":
+                duck_stats.happiness -= 5
+            elif self.POI == "library":
+                duck_stats.intelligence -= 5
+            elif self.POI == "shop":
+                duck_stats.food_supply -= 5
