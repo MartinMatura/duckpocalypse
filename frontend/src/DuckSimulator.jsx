@@ -1,21 +1,35 @@
-import { useState } from "react"
-import reactLogo from "./assets/react.svg"
-import viteLogo from "/vite.svg"
 import "./DuckSimulator.css"
-import React from "react";
-import Header from "./Header.jsx";
+import React, { useState } from "react";
+import Header from "./Components/Header";
+import SimulationArea from "./Components/SimulationArea";
+import StatsPanel from "./Components/StatsPanel";
+import StrategiesPanel from "./Components/StrategiesPanel";
 
 
-function App() {
+export default function App() {
+  const [simulationStarted, setSimulationStarted] = useState(false);
+
+  const handleStart = () => setSimulationStarted(true);
 
   return (
-    <>
+    <div className="flex flex-col h-screen bg-[#fefae0]">
       <Header /> 
-      <main style={{ padding: "2rem" }}>
-        <p>What the duck??</p>
-      </main>
-    </>
+
+      <div className="flex flex-1">
+          {/* Map/Simulation Area on the left */}
+          <div className="flex-1 flex items-center justify-center">
+            <SimulationArea />
+          </div>
+
+          {/*Right side stats or strategies panel*/}
+          <div className="w-64 bg-[#fff9c4] border border-gray-200 p-4">
+            {simulationStarted ? (
+              <StatsPanel />
+            ) : (
+              <StrategiesPanel onStart={handleStart} />
+            )}
+          </div>
+        </div>
+      </div>        
   );
 }
-
-export default App;
