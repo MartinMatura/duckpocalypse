@@ -6,7 +6,8 @@ class Simulator:
         self.grid = grid.set_up_grid()
         self.x_size = len(self.grid[0])
         self.y_size = len(self.grid)
-        self.occupied = set((x,y))
+        self.occupied = set()
+        self.occupied.add((x,y))
         self.neighbours = set()
 
         self.add_new_neighbours((x,y))
