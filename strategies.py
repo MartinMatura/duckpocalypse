@@ -122,7 +122,8 @@ def breadth_first(grid, neighbours, occupied):
             queue.popleft()
     
     for neighbour in neighbours:
-        queue.append(neighbour)
+        if neighbour not in queue:
+            queue.append(neighbour)
 
     if queue:
         return queue.index(0)
