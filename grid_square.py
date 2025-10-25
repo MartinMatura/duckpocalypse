@@ -1,7 +1,4 @@
-import point_of_interest
-
-
-class grid_square:
+class GridSquare:
     humans = 100
     def __init__(self, dif_iq, dif_strength, POI = None, ducks = 0):
         self.dif_iq = dif_iq
