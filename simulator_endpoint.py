@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from ducks import Ducks
 import strategies
 from simulator import Simulator
+import uvicorn
 
 class DuckInfo(BaseModel):
     happiness: int
@@ -35,8 +36,11 @@ def get_next_step():
 
 @app.delete("/end-simulation/")
 def end_simulation():
+    global active_simulation
     if active_simulation is None:
         return {"error": "No active simulation to end"}
-    global active_simulation
     active_simulation = None
     return {"status": "Simulation ended"}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8080)
