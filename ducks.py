@@ -10,18 +10,12 @@ class Ducks:
         self.strength = strength # probability of capturing a square
         self.strategy = strategy
 
-    # Increase in food and happiness will lead to more reproduction, more intelligence will lead to less
+    # Increase in food and happiness -> reproduction, Increase in intelligence less
     def reproduce(self):
-        new_amount = round(self.number * (1 + ((self.happiness + self.food_supply) / (self.happiness + self.food_supply + self.intelligence))))
-        if new_amount < self.food_supply * 50:
-            self.number = new_amount
-        else:
-            # Max ducks for food supply
-            self.number = self.food_supply * 50
+        growth = (self.happiness + self.food_supply - 1.5 * self.intelligence)
+        growth = max(-1, min(1, growth / 100))
+        self.number = round(self.number * (1 + growth))
 
-    def choose_square(self, grid):
-        pass
-
-ducks = Ducks(100, 40, 25, 50, 100, None)
-ducks.reproduce()
-print(ducks.number)
+    # Chosen strategy method
+    def choose_square(self, grid, neighbours):
+        return self.strategy(grid, neighbours)
