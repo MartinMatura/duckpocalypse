@@ -14,6 +14,12 @@ class GridSquare:
 
     def capture(self, duck_stats):
         if self.POI:
-            #poi.add_point(duck_stats)
-            self.POI = None
-        self.captured = True
+            if self.POI == "gym":
+                duck_stats.strength += 5
+            elif self.POI == "pub":
+                duck_stats.happiness += 5
+            elif self.POI == "library":
+                duck_stats.intelligence += 5
+            elif self.POI == "shop":
+                duck_stats.food_supply += 5
+        self.captured = True    

@@ -1,4 +1,5 @@
 import grid_square
+from ducks import Ducks
 
 def set_up_grid():
     pois = {
@@ -16,10 +17,13 @@ def set_up_grid():
 
     return grid
 
-grid = set_up_grid()
 
-for row in grid:
-    for square in row:
-        print(square.POI)
 
+def run(): 
+    grid = set_up_grid()
+    ducks = Ducks(100, 25, 25, 0, 25)
+    starting_pos = (0,0)
+
+if __name__ == "__main__":
+    run()
 
