@@ -4,7 +4,7 @@ class Ducks:
         self.number = number
         self.happiness = happiness
         self.food_supply = food_supply
-        self.intelligence = intelligence # amount of squares that can be attacked
+        self.intelligence = intelligence # related to amount of squares that can be attacked
         self.strength = strength # probability of capturing a square
         self.strategy = strategy
 
