@@ -1,7 +1,7 @@
-import point_of_interest as poi
+#import point_of_interest as poi
 from random import random
 
-class grid_square:
+class GridSquare:
     def __init__(self, POI = None):
         self.POI = POI
         self.captured = False
@@ -15,6 +15,6 @@ class grid_square:
 
     def capture(self, duck_stats):
         if self.POI:
-            poi.add_point(duck_stats)
+            #poi.add_point(duck_stats)
             self.POI = None
         self.captured = True    
