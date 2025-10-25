@@ -26,7 +26,7 @@ async def start(duck_info: DuckInfo):
     active_simulation = Simulator(ducks, duck_info.starting_x, duck_info.starting_y)
     return {"status": "Simulation started"}
 
-@app.get("/get_next_step/")
+@app.get("/get-next-step/")
 def get_next_step():
     if active_simulation is None:
         return {"error": "No active simulation"}
