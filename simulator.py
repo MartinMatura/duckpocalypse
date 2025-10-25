@@ -20,6 +20,12 @@ class Simulator:
                 self.add_new_neighbours(target)
 
         self.ducks.reproduce()
+        return self.status_api_formatter()
+
+    def status_api_formatter(self):
+        return {"number":self.ducks.number, "happiness":self.ducks.happiness,
+                   "food_supply":self.ducks.food_supply, "intelligence":self.ducks.intelligence,
+                   "strength":self.ducks.strength, "occupied":self.occupied}
 
 
     def add_new_neighbours(self, point):
