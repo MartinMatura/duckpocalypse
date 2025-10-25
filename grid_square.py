@@ -9,6 +9,7 @@ class GridSquare:
         probability = duck_stats.strength/100 #+ some function of number of ducks and hunger of ducks
 
         if probability > random():
+            self.capture(duck_stats)
             return True
         return False
 

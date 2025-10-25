@@ -18,6 +18,15 @@ def set_up_grid():
     return grid
 
 
+def print_grid(grid, occupied):
+    for i in range(len(grid)):
+        line = ""
+        for j in range(len(grid[0])):
+            if (i,j) in occupied:
+                line += "O "
+            else:
+                line += "_ "
+        print(line)
 
 def run(): 
     grid = set_up_grid()
