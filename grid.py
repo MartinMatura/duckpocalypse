@@ -27,12 +27,3 @@ def print_grid(grid, occupied):
             else:
                 line += "_ "
         print(line)
-
-def run(): 
-    grid = set_up_grid()
-    ducks = Ducks(100, 25, 25, 0, 25)
-    starting_pos = (0,0)
-
-if __name__ == "__main__":
-    run()
-
