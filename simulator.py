@@ -10,9 +10,13 @@ class Simulator:
     #Starting is in the form [i,j]
     def simulate(self, starting):
         self.add_new_neighbours(starting)
-        for target in self.ducks.choose_square(self.neighbours).attack:
-            target.attack
-        self.ducks.reproduce()
+
+        for i in range(10):
+            for target in self.ducks.choose_square(self.neighbours).attack:
+                if self.grid_get(target).attack():
+                    self.add_new_neighbours(target)
+
+            self.ducks.reproduce()
 
 
     def add_new_neighbours(self, point):
