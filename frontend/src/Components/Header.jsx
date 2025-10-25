@@ -47,7 +47,7 @@ export default function Header() {
                     edge="start"
                     color="inherit"
                     aria-label="menu"
-                    sx={{ mr: 2 }}
+                    sx={{ mr: 24 }}
                     onClick={toggleDrawer(true)}
                 >
                     <MenuIcon />
@@ -56,11 +56,20 @@ export default function Header() {
                 <Typography
                     variant="h6"
                     component="div"
-                    sx={{ flexGrow: 1 }}
+                    sx={{ textAlign: "center",
+                        fontWeight: "bold",
+                     }}
                 >
                     Duckpocalypse
                 </Typography>
+                <div
+                    style={{
+                        position: "absolute",
+                        right: 16,
+                    }}
+                >
                 <DuckButton />
+                </div>
             </Toolbar>
         </AppBar>
 
