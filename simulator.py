@@ -1,5 +1,4 @@
 import grid
-import strategies
 
 class Simulator:
     def __init__(self, ducks, x, y):
