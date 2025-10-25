@@ -31,4 +31,3 @@ def get_next_step():
     if active_simulation is None:
         return {"error": "No active simulation"}
     return active_simulation.simulate_step()
-
