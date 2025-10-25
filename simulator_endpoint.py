@@ -1,4 +1,5 @@
 from typing import Union
+from typing_extensions import Literal
 from fastapi import FastAPI
 from pydantic import BaseModel
 from ducks import Ducks
@@ -10,7 +11,7 @@ class DuckInfo(BaseModel):
     food_supply: int 
     intelligence: int
     strength: int
-    strategy: str
+    strategy: Literal["random_choice", "poi_first", "breadth_first"]
     starting_x: int
     starting_y: int
 
@@ -26,8 +27,16 @@ async def start(duck_info: DuckInfo):
     active_simulation = Simulator(ducks, duck_info.starting_x, duck_info.starting_y)
     return {"status": "Simulation started"}
 
-@app.get("/get_next_step/")
+@app.get("/get-next-step/")
 def get_next_step():
     if active_simulation is None:
         return {"error": "No active simulation"}
     return active_simulation.simulate_step()
+
+@app.delete("/end-simulation/")
+def end_simulation():
+    if active_simulation is None:
+        return {"error": "No active simulation to end"}
+    global active_simulation
+    active_simulation = None
+    return {"status": "Simulation ended"}

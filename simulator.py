@@ -1,4 +1,5 @@
 import grid
+import strategies
 
 class Simulator:
     def __init__(self, ducks, x, y):
@@ -7,9 +8,9 @@ class Simulator:
         self.x_size = len(self.grid[0])
         self.y_size = len(self.grid)
         self.occupied = set()
+        self.occupied.add((x,y))
         self.neighbours = set()
 
-        self.occupied.add(tuple([x,y]))
         self.add_new_neighbours((x,y))
     
     def simulate_step(self):
