@@ -33,6 +33,98 @@ def poi_first(grid, neighbours, occupied):
         return random_choice(grid, neighbours, occupied)
 
     return closest_neighbour
+
+def gym_first(grid, neighbours, occupied):
+    #get list of unoccupied POIs
+    gym_coords = []
+    for coord in pois["gym"]:
+        if coord not in occupied:
+            gym_coords.append(coord)
+    
+    #find neighbour and POI that are closest to each other
+    lowest_dist = float('inf')
+    closest_neighbour = None
+    
+    for neighbour in neighbours:
+        for gym in gym_coords:
+            dist = math.sqrt((neighbour[0] - gym[0])**2 + (neighbour[1] - gym[1])**2)
+            if dist < lowest_dist:
+                lowest_dist = dist
+                closest_neighbour = neighbour
+
+    if closest_neighbour == None:
+        return random_choice(grid, neighbours, occupied)
+
+    return closest_neighbour
+
+def shop_first(grid, neighbours, occupied):
+    #get list of unoccupied POIs
+    shop_coords = []
+    for coord in pois["shop"]:
+        if coord not in occupied:
+            shop_coords.append(coord)
+    
+    #find neighbour and POI that are closest to each other
+    lowest_dist = float('inf')
+    closest_neighbour = None
+    
+    for neighbour in neighbours:
+        for shop in shop_coords:
+            dist = math.sqrt((neighbour[0] - shop[0])**2 + (neighbour[1] - shop[1])**2)
+            if dist < lowest_dist:
+                lowest_dist = dist
+                closest_neighbour = neighbour
+
+    if closest_neighbour == None:
+        return random_choice(grid, neighbours, occupied)
+
+    return closest_neighbour
+
+def pub_first(grid, neighbours, occupied):
+    #get list of unoccupied POIs
+    pub_coords = []
+    for coord in pois["pub"]:
+        if coord not in occupied:
+            pub_coords.append(coord)
+    
+    #find neighbour and POI that are closest to each other
+    lowest_dist = float('inf')
+    closest_neighbour = None
+    
+    for neighbour in neighbours:
+        for pub in pub_coords:
+            dist = math.sqrt((neighbour[0] - pub[0])**2 + (neighbour[1] - pub[1])**2)
+            if dist < lowest_dist:
+                lowest_dist = dist
+                closest_neighbour = neighbour
+
+    if closest_neighbour == None:
+        return random_choice(grid, neighbours, occupied)
+
+    return closest_neighbour
+
+def library_first(grid, neighbours, occupied):
+    #get list of unoccupied POIs
+    library_coords = []
+    for coord in pois["library"]:
+        if coord not in occupied:
+            library_coords.append(coord)
+    
+    #find neighbour and POI that are closest to each other
+    lowest_dist = float('inf')
+    closest_neighbour = None
+    
+    for neighbour in neighbours:
+        for library in library_coords:
+            dist = math.sqrt((neighbour[0] - library[0])**2 + (neighbour[1] - library[1])**2)
+            if dist < lowest_dist:
+                lowest_dist = dist
+                closest_neighbour = neighbour
+
+    if closest_neighbour == None:
+        return random_choice(grid, neighbours, occupied)
+
+    return closest_neighbour
         
 
 def breadth_first(grid, neighbours):
