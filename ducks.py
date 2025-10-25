@@ -1,5 +1,3 @@
-import math
-
 class Ducks:
 
     def __init__(self, number, happiness, food_supply, intelligence, strength, strategy):
