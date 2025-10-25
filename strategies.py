@@ -1,6 +1,7 @@
 import random
 import math
 from grid import pois
+from collections import deque
 
 def random_choice(grid, neighbours, occupied):
     return random.choice(list(neighbours))
@@ -111,8 +112,19 @@ def library_first(grid, neighbours, occupied):
         return closest_neighbour
     else:
         return random_choice(grid, neighbours, occupied)
+    
+queue = None
+def breadth_first(grid, neighbours, occupied):
+    if queue == None:
+        queue = deque()
+    else:
+        if queue and queue.index(0) in occupied:
+            queue.popleft()
+    
+    for neighbour in neighbours:
+        queue.append(neighbour)
 
-def breadth_first(grid, neighbours):
-    pass
-
-
+    if queue:
+        return queue.index(0)
+    
+    return None
