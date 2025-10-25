@@ -23,7 +23,13 @@ def print_grid(grid, occupied):
         line = ""
         for j in range(len(grid[0])):
             if (i,j) in occupied:
-                line += "O "
+                if grid[i][j].POI:
+                    line += "X "
+                else:
+                    line += "O "
             else:
-                line += "_ "
+                if grid[i][j].POI:
+                    line += "+ "
+                else:
+                    line += "_ "
         print(line)

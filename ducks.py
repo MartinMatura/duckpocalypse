@@ -15,5 +15,5 @@ class Ducks:
         self.number = round(self.number * (1 + growth))
 
     # Chosen strategy method
-    def choose_square(self, grid, neighbours):
-        return self.strategy(grid, neighbours)
+    def choose_square(self, grid, neighbours, occupied):
+        return self.strategy(grid, neighbours, occupied)
