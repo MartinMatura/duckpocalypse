@@ -115,16 +115,18 @@ def library_first(grid, neighbours, occupied):
     
 queue = None
 def breadth_first(grid, neighbours, occupied):
+    global queue
     if queue == None:
         queue = deque()
     else:
-        if queue and queue.index(0) in occupied:
+        if queue and queue[0] in occupied:
             queue.popleft()
     
     for neighbour in neighbours:
-        queue.append(neighbour)
+        if neighbour not in queue:
+            queue.append(neighbour)
 
     if queue:
-        return queue.index(0)
+        return queue[0]
     
     return None
