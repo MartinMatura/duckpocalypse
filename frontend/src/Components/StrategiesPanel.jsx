@@ -1,9 +1,13 @@
 export default function StrategiesPanel({ onStart }) {
   const strategies = [
-    { name: "Aggressive Ducks", desc: "Attack anything that moves." },
-    { name: "Defensive Ducks", desc: "Hold formation and protect their pond." },
-    { name: "Random Ducks", desc: "Chaos reigns supreme." },
-    { name: "Smart Ducks", desc: "Adapt to survive." },
+    { name: "POI first - random", desc: "Aims for closest point of interest, then random once all discovered" },
+    { name: "POI first - bfs", desc: "Aims for closest point of interest, then uses a bfs algoritm once all discovered" },
+    { name: "Random", desc: "Randomly selects next sqaure from its neighbours" },
+    { name: "BFS", desc: "Breadth first search, all closest nodes, then all their closest nodes" },
+    { name: "Pub First", desc: "Aims for pub points of interest first, then random once all discovered" },
+    { name: "Bread First", desc: "Aims for shop points of interest first, then random once all discovered" },
+    { name: "Library First", desc: "Aims for library points of interest first, then random once all discovered" },
+    { name: "Gym First", desc: "Aims for gym points of interest first, then random once all discovered" }
   ];
 
   return (
