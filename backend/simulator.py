@@ -26,7 +26,7 @@ class Simulator:
         #Choose new targets
 
         for _ in range(int(self.ducks.intelligence / Simulator.INTELLIGENCE_PER_ATTACK)):
-            if len(self.occupied) == 400 or self.step_counter > 150:
+            if len(self.occupied) == 400 or self.step_counter > 100:
                 self.is_done = 1 
                 return  self.status_api_formatter()
             target = self.ducks.choose_square(self.grid, self.neighbours, self.occupied)

@@ -24,8 +24,8 @@ export default function DuckSimulator() {
   intelligence: 5,
   strength: 20,
   strategy: selectedStrategy,
-  starting_x: 0,
-  starting_y: 0,
+  starting_x: 15,
+  starting_y: 5,
 };
 
 

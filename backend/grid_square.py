@@ -6,7 +6,7 @@ class GridSquare:
         # self.captured = False
 
     def attack(self, duck_stats):
-        probability = duck_stats.strength/100 #+ some function of number of ducks and hunger of ducks
+        probability = duck_stats.strength/60 #+ some function of number of ducks and hunger of ducks
 
         if probability > random():
             self.capture(duck_stats)
