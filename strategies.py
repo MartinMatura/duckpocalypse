@@ -47,7 +47,7 @@ def gym_first(grid, neighbours, occupied):
                     closest_neighbour = neighbour
         return closest_neighbour
     else:
-        return random_choice(grid, neighbours, occupied)
+        return poi_first_bfs(grid, neighbours, occupied)
 
 #shop_first()
 def bread_first_search(grid, neighbours, occupied):
@@ -69,7 +69,7 @@ def bread_first_search(grid, neighbours, occupied):
                     closest_neighbour = neighbour
         return closest_neighbour
     else:
-        return random_choice(grid, neighbours, occupied)
+        return poi_first_bfs(grid, neighbours, occupied)
 
 def pub_first(grid, neighbours, occupied):
     #get list of unoccupied pubs
@@ -90,7 +90,7 @@ def pub_first(grid, neighbours, occupied):
                     closest_neighbour = neighbour
         return closest_neighbour    
     else:
-        return random_choice(grid, neighbours, occupied)
+        return poi_first_bfs(grid, neighbours, occupied)
 
 def library_first(grid, neighbours, occupied):
     #get list of unoccupied libraries
@@ -111,7 +111,7 @@ def library_first(grid, neighbours, occupied):
                     closest_neighbour = neighbour 
         return closest_neighbour
     else:
-        return random_choice(grid, neighbours, occupied)
+        return poi_first_bfs(grid, neighbours, occupied)
     
 queue = None
 def breadth_first(grid, neighbours, occupied):
