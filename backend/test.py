@@ -1,8 +1,8 @@
-import grid_square
-from grid import *
-from ducks import *
-from simulator import *
-from strategies import *
+from backend import grid_square
+from backend.grid import *
+from backend.ducks import *
+from backend.simulator import *
+from backend.strategies import *
 
 if __name__ == "__main__":
     grid = set_up_grid()

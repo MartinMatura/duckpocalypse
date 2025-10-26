@@ -1,6 +1,6 @@
 import random
 import math
-from grid import pois
+from backend.grid import pois
 from collections import deque
 
 def random_choice(grid, neighbours, occupied):
