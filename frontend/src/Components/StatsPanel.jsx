@@ -49,7 +49,7 @@ const {number=20,
   strength=20, 
   tiles_claimed = 0,
   tiles_total = 400,
-  } = liveStats || {};
+  } = liveStats;
 
   //Helper
   const progressWidth = (value) => `${Math.min(value, 100)}%`;
@@ -61,7 +61,7 @@ return (
         {/* Tile Progress */}
         <div className="space-y-2 text-2xl font-medium">
           <p>
-            Tiles conquered:{" "}
+            Tiles claimed:{" "}
             <span className="font-bold text-green-500">
               {tiles_claimed}
             </span>{" "}
