@@ -10,6 +10,7 @@ class Simulator:
         self.occupied = set()
         self.occupied.add((x,y))
         self.neighbours = set()
+        is_done = 0
 
         self.add_new_neighbours((x,y))
     
@@ -17,6 +18,9 @@ class Simulator:
         self.lose_ducks()
         #Choose new targets
         for _ in range(int(self.ducks.intelligence / 5)):
+            if len(self.occupied) == 400:
+                self.is_done = 1 
+                return  self.status_api_formatter()
             target = self.ducks.choose_square(self.grid, self.neighbours, self.occupied)
             if self.grid_get(target).attack(self.ducks):
                 self.occupied.add(target)
@@ -24,7 +28,6 @@ class Simulator:
                 self.add_new_neighbours(target)
 
         self.ducks.reproduce()
-        # print(list(self.occupied))
         self.print_duck_stats()
         return self.status_api_formatter()
 
@@ -35,7 +38,7 @@ class Simulator:
     def status_api_formatter(self):
         return {"number":self.ducks.number, "happiness":self.ducks.happiness,
                    "food_supply":self.ducks.food_supply, "intelligence":self.ducks.intelligence,
-                   "strength":self.ducks.strength, "occupied":list(self.occupied)}
+                   "strength":self.ducks.strength, "occupied":list(self.occupied), "is_done": self.is_done}
 
     def add_new_neighbours(self, point):
         for points in self.get_all_neighbours(point):
