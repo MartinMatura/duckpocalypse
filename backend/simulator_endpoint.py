@@ -12,13 +12,13 @@ class DuckInfo(BaseModel):
     food_supply: int 
     intelligence: int
     strength: int
-    strategy: Literal["random_choice", "poi_first", "breadth_first"]
+    strategy: Literal["random_choice", "poi_first_random", "breadth_first", "poi_first_bfs", "gym_first", "pub_first", "library_first", "bread_first"]
     starting_x: int
     starting_y: int
 
 app = FastAPI()
 no_ducks = 100
-strat = {"random_choice": strategies.random_choice, "poi_first": strategies.poi_first, "breadth_first": strategies.breadth_first}
+strat = {"random_choice": strategies.random_choice, "poi_first_random": strategies.poi_first_random, "breadth_first": strategies.breadth_first, "poi_first_bfs": strategies.poi_first_bfs, "gym_first": strategies.gym_first, "pub_first": strategies.pub_first, "library_first": strategies.library_first, "bread_first": strategies.bread_first_search}
 active_simulation = None
 
 @app.post("/start-conditions/")

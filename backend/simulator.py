@@ -16,13 +16,18 @@ class Simulator:
         self.occupied = set()
         self.occupied.add((x,y))
         self.neighbours = set()
+        is_done = 0
 
         self.add_new_neighbours((x,y))
     
     def simulate_step(self):
         self.lose_ducks()
         #Choose new targets
+
         for _ in range(int(self.ducks.intelligence / Simulator.INTELLIGENCE_PER_ATTACK)):
+            if len(self.occupied) == 400:
+                self.is_done = 1 
+                return  self.status_api_formatter()
             target = self.ducks.choose_square(self.grid, self.neighbours, self.occupied)
             if self.grid_get(target).attack(self.ducks):
                 self.occupied.add(target)
@@ -30,8 +35,7 @@ class Simulator:
                 self.add_new_neighbours(target)
 
         self.ducks.reproduce()
-        print(self.ducks.number, end=" ")
-        print()
+
         return self.status_api_formatter()
 
     def print_duck_stats(self):
@@ -42,9 +46,8 @@ class Simulator:
     def status_api_formatter(self):
         return {"number":self.ducks.number, "happiness":self.ducks.happiness,
                    "food_supply":self.ducks.food_supply, "intelligence":self.ducks.intelligence,
-                   "strength":self.ducks.strength, "occupied":list(self.occupied)}
-    
-    #Add unseen neighbours to neighbour list around a given point
+                   "strength":self.ducks.strength, "occupied":list(self.occupied), "is_done": self.is_done}
+
     def add_new_neighbours(self, point):
         for points in self.get_all_neighbours(point):
             if points not in self.neighbours and points not in self.occupied:
