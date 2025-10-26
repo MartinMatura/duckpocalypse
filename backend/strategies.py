@@ -131,6 +131,10 @@ def breadth_first(grid, neighbours, occupied):
     
     return None
 
+def reset_breadth_first():
+    global queue
+    queue = None
+
 def poi_first_bfs(grid, neighbours, occupied):
     #get list of unoccupied POIs
     poi_coords = []
