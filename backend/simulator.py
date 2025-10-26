@@ -16,7 +16,7 @@ class Simulator:
         self.occupied = set()
         self.occupied.add((x,y))
         self.neighbours = set()
-        is_done = 0
+        self.is_done = 0
 
         self.add_new_neighbours((x,y))
     
