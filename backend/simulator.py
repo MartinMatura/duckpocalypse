@@ -7,8 +7,10 @@ class Simulator:
     NEIGHBOUR_COUNT_MODIFIER = 16
     NEIGHBOUR_FREQUENCY = 3
     FOOD_SUPPLY_MODIFIER = 75
+    MAX_STEPS = 100
 
-    def __init__(self, ducks, x, y):
+    #conditional choice: 0 is happiness, 1 is food_supply, 2 is intelligence, 3 is strength
+    def __init__(self, ducks, x, y, conditional_choice = None, threshold = None, strategy2 = None):
         self.ducks = ducks
         self.grid = grid.set_up_grid()
         self.x_size = len(self.grid[0])
@@ -17,6 +19,16 @@ class Simulator:
         self.occupied.add((x,y))
         self.neighbours = set()
         self.is_done = 0
+    
+        self.conditional_choice = conditional_choice
+        if conditional_choice:
+            self.conditional = {0:self.ducks.happiness, 1:self.ducks.food_supply, 2:self.ducks.intelligence, 3:self.ducks.strength}.get(conditional_choice, None)
+        else:
+            self.conditional = None
+
+        self.threshold = threshold
+        self.strategy2 = strategy2
+        self.switched = False
         self.step_counter = 0
 
         self.add_new_neighbours((x,y))
@@ -24,9 +36,18 @@ class Simulator:
     def simulate_step(self):
         self.lose_ducks()
         #Choose new targets
+        if not self.switched and self.conditional:
+            self.conditional = {0:self.ducks.happiness, 1:self.ducks.food_supply, 2:self.ducks.intelligence, 3:self.ducks.strength}.get(self.conditional_choice, None)
+            if self.conditional >= self.threshold:
+                self.ducks.strategy = self.strategy2
+                self.switched = True
 
         for _ in range(int(self.ducks.intelligence / Simulator.INTELLIGENCE_PER_ATTACK)):
+<<<<<<< HEAD
+            if len(self.occupied) == self.x_size * self.y_size or self.step_counter > Simulator.MAX_STEPS:
+=======
             if len(self.occupied) == 400 or self.step_counter > 100:
+>>>>>>> 909591ca4acb84726a22ddae7e2f8d3de94e8b85
                 self.is_done = 1 
                 return  self.status_api_formatter()
             target = self.ducks.choose_square(self.grid, self.neighbours, self.occupied)
@@ -84,7 +105,7 @@ class Simulator:
                 if neighbour_freq[k] >=Simulator.NEIGHBOUR_FREQUENCY and (random.random() * neighbour_freq[k] / Simulator.NEIGHBOUR_COUNT_MODIFIER) > (self.ducks.food_supply/Simulator.FOOD_SUPPLY_MODIFIER):
                     self.grid_get(k).deoccupy(self.ducks)
                     self.occupied.remove(k)
-                    self.neighbours.add(k)
+                    # self.neighbours.add(k)
 
 
     def grid_get(self, points):
