@@ -47,7 +47,8 @@ export default function Header() {
                     edge="start"
                     color="inherit"
                     aria-label="menu"
-                    sx={{ mr:90 }}
+                    sx={{ mr:70
+                     }}
                     onClick={toggleDrawer(true)}
                 >
                     <MenuIcon />
