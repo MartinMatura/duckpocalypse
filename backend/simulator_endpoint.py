@@ -3,9 +3,9 @@ from typing_extensions import Literal
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from backend.ducks import Ducks
-from backend import strategies
-from backend.simulator import Simulator
+from ducks import Ducks
+import strategies
+from simulator import Simulator
 import uvicorn
 
 class DuckInfo(BaseModel):

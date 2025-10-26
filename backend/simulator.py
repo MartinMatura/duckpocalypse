@@ -1,4 +1,4 @@
-from backend import grid
+import grid
 import random
 
 class Simulator:
@@ -17,6 +17,7 @@ class Simulator:
         self.occupied.add((x,y))
         self.neighbours = set()
         self.is_done = 0
+        self.step_counter = 0
 
         self.add_new_neighbours((x,y))
     
@@ -25,7 +26,7 @@ class Simulator:
         #Choose new targets
 
         for _ in range(int(self.ducks.intelligence / Simulator.INTELLIGENCE_PER_ATTACK)):
-            if len(self.occupied) == 400:
+            if len(self.occupied) == 400 or self.step_counter > 50:
                 self.is_done = 1 
                 return  self.status_api_formatter()
             target = self.ducks.choose_square(self.grid, self.neighbours, self.occupied)
@@ -35,6 +36,7 @@ class Simulator:
                 self.add_new_neighbours(target)
 
         self.ducks.reproduce()
+        self.step_counter += 1
 
         return self.status_api_formatter()
 
