@@ -6,7 +6,7 @@ from collections import deque
 def random_choice(grid, neighbours, occupied):
     return random.choice(list(neighbours))
 
-def poi_first(grid, neighbours, occupied):
+def poi_first_random(grid, neighbours, occupied):
     #get list of unoccupied POIs
     poi_coords = []
     for val in pois.values():
@@ -115,10 +115,11 @@ def library_first(grid, neighbours, occupied):
     
 queue = None
 def breadth_first(grid, neighbours, occupied):
+    global queue
     if queue == None:
         queue = deque()
     else:
-        if queue and queue.index(0) in occupied:
+        if queue and queue[0] in occupied:
             queue.popleft()
     
     for neighbour in neighbours:
@@ -126,6 +127,28 @@ def breadth_first(grid, neighbours, occupied):
             queue.append(neighbour)
 
     if queue:
-        return queue.index(0)
+        return queue[0]
     
     return None
+
+def poi_first_bfs(grid, neighbours, occupied):
+    #get list of unoccupied POIs
+    poi_coords = []
+    for val in pois.values():
+        for coord in val:
+            if coord not in occupied:
+                poi_coords.append(coord)
+
+    if len(poi_coords) > 0:
+        #find neighbour that is closest to a POI
+        lowest_dist = float('inf')
+        closest_neighbour = None
+        for neighbour in neighbours:
+            for poi in poi_coords:
+                dist = math.sqrt((neighbour[0] - poi[0])**2 + (neighbour[1] - poi[1])**2)
+                if dist < lowest_dist:
+                    lowest_dist = dist
+                    closest_neighbour = neighbour
+        return closest_neighbour
+    else:
+        return breadth_first(grid, neighbours, occupied)
