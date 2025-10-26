@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./SimulationArea.css";
 
-const duckMap = "/bg_poi_pretty_better_icons.png"
+const duckMap = "/bg_poi_no_grid.png"
 
 export default function SimulationArea() {
   const [grid, setGrid] = useState(Array(20).fill().map(() => Array(20).fill({ owner: null })));
@@ -30,7 +30,7 @@ export default function SimulationArea() {
 
 
       {/*Transparent map overlay */}
-      <div className="absolute inset-0 translate-y-[5px] grid [grid-template-columns:repeat(20,1fr)] [grid-template-rows:repeat(20,1fr)] gap-[1px]">
+      <div className="absolute inset-0 grid [grid-template-columns:repeat(20,1fr)] [grid-template-rows:repeat(20,1fr)] gap-[1px]">
         {grid.map((row, i) =>
           row.map((cell, j) => (
             <div

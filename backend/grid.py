@@ -1,4 +1,4 @@
-from backend import grid_square
+import grid_square
 
 pois = {
     "gym": [(0, 10), (8, 10), (9, 4), (10, 14), (14, 18), (16, 3), (17, 9)],
