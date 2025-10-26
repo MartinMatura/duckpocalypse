@@ -24,7 +24,7 @@ export default function App() {
           </div>
 
           {/*Right side stats or strategies panel --> one at a time*/}
-          <div className="w-64 bg-[#fff9c4] border border-gray-300 p-4 h-full overflow-y-auto">
+          <div className="w-96 bg-[#fff9c4] border border-yellow-300 p-4 h-full overflow-y-auto">
           {!simulationStarted ? (
             <StrategiesPanel onStart={handleStart} />
           ) : (
@@ -33,7 +33,7 @@ export default function App() {
         </div>
       </div> 
 
-      <footer className="fixed bottom-2 left-0 w-full text-center text-xs text-gray-500 italic">
+      <footer className="fixed bottom-2 left-0 w-full text-center text-s text-gray-500 italic">
        *No ducks were harmed in the making of this product.*
       </footer>
     </div> 

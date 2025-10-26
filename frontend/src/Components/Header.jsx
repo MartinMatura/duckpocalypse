@@ -47,20 +47,20 @@ export default function Header() {
                     edge="start"
                     color="inherit"
                     aria-label="menu"
-                    sx={{ mr: 24 }}
+                    sx={{ mr:90 }}
                     onClick={toggleDrawer(true)}
                 >
                     <MenuIcon />
                 </IconButton>
 
                 <Typography
-                    variant="h6"
+                    variant="h4"
                     component="div"
                     sx={{ textAlign: "center",
                         fontWeight: "bold",
                      }}
                 >
-                    Duckpocalypse
+                    Duckpocalypse*
                 </Typography>
                 <div
                     style={{
@@ -94,10 +94,15 @@ export default function Header() {
                     onChange={handleSearchChange}
                 />
             </form>
-            <ListItem>
+            <ListItem sx={{ flexDirection: "column", alignItems: "center", mt: 2}}>
                 <ListItemText
                     primary="(Nothing to see here, human...)"
-                    sx={{ mt: 2 }}
+                    sx={{ textAlign: "center", mb: 1 }}
+                />
+                <img
+                    src="/dancing_duck.webp"
+                    alt="Dancing duck"
+                    className="w-32 h-auto rounded-lg shadow-md"
                 />
             </ListItem>
         </List>  
