@@ -60,8 +60,26 @@ def end_simulation():
 
 @app.get("/grid/")
 def get_grid():
-    #temporary 20x20 grid until real data is ready
-    grid = [[{"owner": None} for _ in range(20)] for _ in range(20)]
+    global active_simulation
+    if active_simulation is None:
+        # no simulation yet → show blank grid
+        grid = [[{"owner": None} for _ in range(20)] for _ in range(20)]
+        return {"grid": grid}
+
+    size_y = active_simulation.y_size
+    size_x = active_simulation.x_size
+    owned = active_simulation.occupied
+
+    grid = []
+    for i in range(size_y):
+        row = []
+        for j in range(size_x):
+            if (i, j) in owned:
+                row.append({"owner": "duck"})  # claimed tile
+            else:
+                row.append({"owner": None})     # unclaimed tile
+        grid.append(row)
+
     return {"grid": grid}
 
 if __name__ == "__main__":

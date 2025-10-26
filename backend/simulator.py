@@ -65,7 +65,7 @@ class Simulator:
     def status_api_formatter(self):
         return {"number":self.ducks.number, "happiness":self.ducks.happiness,
                    "food_supply":self.ducks.food_supply, "intelligence":self.ducks.intelligence,
-                   "strength":self.ducks.strength, "occupied":list(self.occupied), "is_done": self.is_done}
+                   "strength":self.ducks.strength, "occupied":list(self.occupied), "tiles_claimed": len(self.occupied), "is_done": self.is_done}
 
     def add_new_neighbours(self, point):
         for points in self.get_all_neighbours(point):
