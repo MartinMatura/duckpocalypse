@@ -43,7 +43,11 @@ class Simulator:
                 self.switched = True
 
         for _ in range(int(self.ducks.intelligence / Simulator.INTELLIGENCE_PER_ATTACK)):
+<<<<<<< HEAD
             if len(self.occupied) == self.x_size * self.y_size or self.step_counter > Simulator.MAX_STEPS:
+=======
+            if len(self.occupied) == 400 or self.step_counter > 100:
+>>>>>>> 909591ca4acb84726a22ddae7e2f8d3de94e8b85
                 self.is_done = 1 
                 return  self.status_api_formatter()
             target = self.ducks.choose_square(self.grid, self.neighbours, self.occupied)
