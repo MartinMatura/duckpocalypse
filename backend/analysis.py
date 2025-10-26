@@ -114,15 +114,13 @@ def run_switch_sim_food(ducks,strategy, threshold=15, x=0, y=0, trials = 10, ite
 
     return [average_occupy, average_ducks]
 
-# o1 = run_switch_sim_food(make_duck(strat.bread_first_search,food_supply=10),strat.poi_first_bfs,threshold=15,x=10,y=10, print_stats= False)
-# o2 = run_sim(make_duck(strat.poi_first_bfs,food_supply=10),x=10,y=10, print_stats= False)
+# o1 = run_switch_sim(strat.pub_first, strat.poi_first_random, threshold=25, conditional_choice=0)
+# o2 = run_sim(make_duck(strat.poi_first_random))
 
-o1 = run_switch_sim(strat.bread_first_search, strat.poi_first_random, threshold=25, conditional_choice=1)
-o2 = run_sim(make_duck(strat.poi_first_random))
+compare_strategy(strat.poi_bfs_interlace, strat.poi_first_bfs)
 
-
-print_stats(o1)
-print_stats(o2)
+# print_stats(o1)
+# print_stats(o2)
 
 
 #Bread first and then poi seems to optimise?

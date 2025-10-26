@@ -7,6 +7,7 @@ class Simulator:
     NEIGHBOUR_COUNT_MODIFIER = 16
     NEIGHBOUR_FREQUENCY = 3
     FOOD_SUPPLY_MODIFIER = 75
+    MAX_STEPS = 100
 
     #conditional choice: 0 is happiness, 1 is food_supply, 2 is intelligence, 3 is strength
     def __init__(self, ducks, x, y, conditional_choice = None, threshold = None, strategy2 = None):
@@ -28,6 +29,7 @@ class Simulator:
         self.threshold = threshold
         self.strategy2 = strategy2
         self.switched = False
+        self.step_counter = 0
 
         self.add_new_neighbours((x,y))
     
@@ -41,7 +43,7 @@ class Simulator:
                 self.switched = True
 
         for _ in range(int(self.ducks.intelligence / Simulator.INTELLIGENCE_PER_ATTACK)):
-            if len(self.occupied) == 400:
+            if len(self.occupied) == self.x_size * self.y_size or self.step_counter > Simulator.MAX_STEPS:
                 self.is_done = 1 
                 return  self.status_api_formatter()
             target = self.ducks.choose_square(self.grid, self.neighbours, self.occupied)
@@ -51,6 +53,7 @@ class Simulator:
                 self.add_new_neighbours(target)
 
         self.ducks.reproduce()
+        self.step_counter += 1
 
         return self.status_api_formatter()
 

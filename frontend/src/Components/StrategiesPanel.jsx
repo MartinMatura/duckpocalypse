@@ -1,14 +1,17 @@
-export default function StrategiesPanel({ onStart }) {
+import React, { useState } from "react";
+
+export default function StrategiesPanel({ onSelect, onStart, selected }) {
   const strategies = [
-    { name: "POI first - random", desc: "Aims for closest point of interest, then random once all discovered" },
-    { name: "POI first - bfs", desc: "Aims for closest point of interest, then uses a bfs algoritm once all discovered" },
-    { name: "Random", desc: "Randomly selects next sqaure from its neighbours" },
-    { name: "BFS", desc: "Breadth first search, all closest nodes, then all their closest nodes" },
-    { name: "Pub First", desc: "Aims for pub points of interest first, then random once all discovered" },
-    { name: "Bread First", desc: "Aims for shop points of interest first, then random once all discovered" },
-    { name: "Library First", desc: "Aims for library points of interest first, then random once all discovered" },
-    { name: "Gym First", desc: "Aims for gym points of interest first, then random once all discovered" }
-  ];
+  { name: "POI first - random", value: "poi_first_random", desc: "Aims for closest POI, then random" },
+  { name: "POI first - bfs", value: "poi_first_bfs", desc: "Aims for closest POI, then BFS" },
+  { name: "Random", value: "random_choice", desc: "Randomly selects next square" },
+  { name: "BFS", value: "breadth_first", desc: "Breadth-first search" },
+  { name: "Pub First", value: "pub_first", desc: "Aims for pubs first" },
+  { name: "Bread First", value: "bread_first", desc: "Aims for shops first" },
+  { name: "Library First", value: "library_first", desc: "Aims for libraries first" },
+  { name: "Gym First", value: "gym_first", desc: "Aims for gyms first" }
+];
+
 
   return (
     <div className="flex flex-col h-full">
@@ -21,7 +24,12 @@ export default function StrategiesPanel({ onStart }) {
         {strategies.map((s, i) => (
           <div
             key={i}
-            className="bg-yellow-200 hover:bg-yellow-300 border border-yellow-400 rounded-lg p-3 cursor-pointer shadow transition-transform hover:scale-105"
+            onClick={() => onSelect(s.value)}
+            className={`bg-yellow-200 hover:bg-yellow-300 border border-yellow-400 rounded-lg p-3 cursor-pointer shadow transition-transform hover:scale-105 ${
+             selected === s.value
+             ? "bg-yellow-400 border-yellow-600"
+             : "bg-yellow-200 hover:bg-yellow-300 border-yellow-400"
+            }`}
           >
             <h3 className="font-semibold text-lg mb-1 text-gray-800">{s.name}</h3>
             <p className="text-sm text-gray-600">{s.desc}</p>

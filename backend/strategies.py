@@ -155,4 +155,12 @@ def poi_first_bfs(grid, neighbours, occupied):
                     closest_neighbour = neighbour
         return closest_neighbour
     else:
-        return breadth_first(grid, neighbours, occupied)
+        return breadth_first(grid, neighbours, occupied)#
+    
+def poi_bfs_interlace(grid, neighbours, occupied):
+    if len(neighbours) / len(occupied) > 3:
+        return bread_first_search(grid, neighbours, occupied)
+    else:
+        return poi_first_bfs(grid, neighbours, occupied)
+    
+    
